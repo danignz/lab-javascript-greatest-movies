@@ -3,12 +3,39 @@ console.log('movies: ', movies);
 
 
 // Iteration 1: All directors? - Get the array of all directors.
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(movies) {
+
+  const listOfDirectors = movies.map(movie => movie.director);
+  return listOfDirectors;
+}
+
+const listDirectors = getAllDirectors(movies);
+
+// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+function uniquifyDirectors(listDirectors) {
+
+  const arrayWordsUnique = [];
+  listDirectors.forEach(function (director) {
+
+    if (listDirectors.indexOf(director) === listDirectors.lastIndexOf(director)) { //words uniques
+      arrayWordsUnique.push(director);
+    }else if (arrayWordsUnique.indexOf(director) === -1){   //repeated words, check if it has not been inserted yet
+      arrayWordsUnique.push(director);
+    }
+
+  });
+
+  return arrayWordsUnique;
+}
+
+console.log(uniquifyDirectors(listDirectors));
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies() {}
+
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage() {}
