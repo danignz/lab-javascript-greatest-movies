@@ -147,9 +147,25 @@ console.log(turnHoursToMinutes(movies));
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
 
+  const listOfYears = movies.map(movie => movie.year.toString());
 
+  const arrayYearsUnique = [];
+  listOfYears.forEach(function (year) {
+
+    if (listOfYears.indexOf(year.toString()) === listOfYears.lastIndexOf(year.toString())) { //words uniques
+      arrayYearsUnique.push(year);
+    }else if (arrayYearsUnique.indexOf(year) === -1){   //repeated words, check if it has not been inserted yet
+      arrayYearsUnique.push(year);
+    }
+
+  });
+ 
+  return arrayYearsUnique;
+}
+
+console.log(bestYearAvg(movies));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
