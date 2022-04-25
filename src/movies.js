@@ -10,6 +10,7 @@ function getAllDirectors(movies) {
 }
 
 const listDirectors = getAllDirectors(movies);
+console.log(listDirectors);
 
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -57,10 +58,34 @@ function scoresAverage(movies) {
 console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {
+
+  const listOfAllDrama = movies.filter(movie => movie.genre.includes('Drama'));
+
+  const totalDramaScore = listOfAllDrama.reduce(function (sum, movie) {
+                                                    return sum + movie.score;
+                                                }, 0);
+  
+  return +(totalDramaScore / listOfAllDrama.length).toFixed(2);
+
+}
+
+console.log(dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movies) {
+
+  //deep Copy due .sort() mutate the original array
+  const moviesDeepCopy = JSON.parse(JSON.stringify(movies));
+
+  moviesDeepCopy.sort((movieA, movieB) => movieA.year - movieB.year || 
+                                          movieA.title.localeCompare(movieB.title)
+                     );
+
+  return moviesDeepCopy;
+}
+
+console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
