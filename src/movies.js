@@ -107,7 +107,12 @@ function orderAlphabetically(movies) {
 
   const allTittle = moviesDeepCopy.map(movie => movie.title);
 
-  return allTittle.slice(0, 20);
+  //Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
+  if (allTittle.length < 20){
+    return allTittle;
+  }else{
+    return allTittle.slice(0, 20);
+  }
 
 }
 
