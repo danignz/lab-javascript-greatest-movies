@@ -88,7 +88,30 @@ function orderByYear(movies) {
 console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+
+  //deep Copy due .sort() mutate the original array
+  const moviesDeepCopy = JSON.parse(JSON.stringify(movies));
+
+  moviesDeepCopy.sort((movieA, movieB) => {
+    if (movieA.title < movieB.title) {
+      return -1;
+    }
+    if (movieA.title > movieB.title) {
+      return 1;
+    }
+    if (movieA.title === movieB.title) {
+      return 0;
+    }
+  });
+
+  const allTittle = moviesDeepCopy.map(movie => movie.title);
+
+  return allTittle.slice(0, 20);
+
+}
+
+console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
