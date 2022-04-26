@@ -152,6 +152,10 @@ function bestYearAvg(movies) {
   const listOfYears = movies.map(movie => movie.year.toString());
 
   const arrayYearsUnique = [];
+  let maxScore = 0;
+  let yearMaxScore = 0;
+
+  //create a list with all the years non-repetition
   listOfYears.forEach(function (year) {
 
     if (listOfYears.indexOf(year.toString()) === listOfYears.lastIndexOf(year.toString())) { //words uniques
@@ -161,8 +165,23 @@ function bestYearAvg(movies) {
     }
 
   });
+
+  //for each year, calculate average
+  arrayYearsUnique.forEach(function (year) {
+      
+      let listOfAllMoviesYear = [];
+      year = parseInt(year);
+      listOfAllMoviesYear = movies.filter(movie => movie.year === year);
+      //console.log(listOfAllMoviesYear);
+      const yearScore = scoresAverage(listOfAllMoviesYear);
+      //console.log(yearScore);
+      if(maxScore < yearScore){
+        maxScore = yearScore;
+        yearMaxScore = year;
+      }
+  });
  
-  return arrayYearsUnique;
+  return `The best year was ${yearMaxScore} with an average score of ${maxScore}`;
 }
 
 console.log(bestYearAvg(movies));
